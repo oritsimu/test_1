@@ -1,0 +1,6 @@
+xlsxwriter==1.4.3
+bokeh==2.3.2
+streamlit_bokeh_events==0.1.2
+google.ads==13.0.0
+pyrebase==3.0.27
+streamlit==0.82.0
