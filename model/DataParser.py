@@ -11,6 +11,9 @@ class DataParser:
 
     __languages = {} #KEY: Language Name, VALUE: Language ID
 
+    __DEFAUT_LOCATION = "United States"
+    __DEFAUT_LANGUAGE = "English"
+
 
     def __init__(self):
         self.__parse_languages()
@@ -59,7 +62,7 @@ class DataParser:
 
 
     def get_parent_locations(self):
-        return list(self.__main_locations.keys())
+        return [self.__DEFAUT_LOCATION] + list(self.__main_locations.keys())
 
 
     def get_sub_locations_by_parent_location_id(self, parent_location_id):
@@ -67,7 +70,7 @@ class DataParser:
 
 
     def get_languages(self):
-        return list(self.__languages.keys())
+        return [self.__DEFAUT_LANGUAGE] + list(self.__languages.keys())
 
 
     def get_location_id(self, location):
