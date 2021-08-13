@@ -25,7 +25,7 @@ class Ads:
 
     # default location ID for New York
     # default language ID for English
-    def __init__(self, location_ids = ["1023191"], language_id = "1000"):
+    def __init__(self, location_ids = ["2840"], language_id = "1000"):
         self.__googleads_client = GoogleAdsClient.load_from_storage(self.__CREDENTIALS_PATH)
         self.__DEFAULT_LOCATION_IDS = location_ids
         self.__DEFAULT_LANGUAGE_ID = language_id
@@ -79,9 +79,9 @@ class Ads:
             main_kw = list_keywords[0]
             del list_keywords[0]
             list_keywords = sorted(list_keywords, key=lambda x: int(x.keyword_idea_metrics.avg_monthly_searches), reverse=True)
-            top_four = list_keywords[:4]
-            top_four_with_main_kw = [main_kw] + top_four
-            return top_four_with_main_kw
+            top_five = list_keywords[:5]
+            top_five_with_main_kw = [main_kw] + top_five
+            return top_five_with_main_kw
 
 
 
