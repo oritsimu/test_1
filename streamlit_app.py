@@ -36,12 +36,14 @@ parent_locations = data_parser.get_parent_locations()
 languages = data_parser.get_languages()
 
 
-selected_countries = st.multiselect('Country', parent_locations)
+selected_countries = st.multiselect('Country', parent_locations, default=["United States"])
 selected_language = st.selectbox('Language', languages)
 
 
 location_ids = data_parser.get_parent_location_ids(selected_countries)
 language_id = data_parser.get_language_id(selected_language)
+
+print(location_ids)
 
 
 include_volume = st.checkbox('Include search volume per keyword')
@@ -65,9 +67,9 @@ if start_execution:
         error_flag = False #If there is an unexpected error with the API, the rest of the code won't be processed and a warning message will appear.
 
         if include_volume:
-            columns = ["Main KW", "Search Volume main", "Keyword 2", "Search Volume 2", "Keyword 3", "Search Volume 3", "Keyword 4", "Search Volume 4", "Keyword 5", "Search Volume 5"]
+            columns = ["Main KW", "Search Volume main", "Keyword 1", "Search Volume 1", "Keyword 2", "Search Volume 2", "Keyword 3", "Search Volume 3", "Keyword 4", "Search Volume 4", "Keyword 5", "Search Volume 5"]
         else:
-            columns = ["Main KW", "Keyword 2", "Keyword 3", "Keyword 4", "Keyword 5"]
+            columns = ["Main KW", "Keyword 1", "Keyword 2", "Keyword 3", "Keyword 4", "Keyword 5"]
 
 
         rows = []
