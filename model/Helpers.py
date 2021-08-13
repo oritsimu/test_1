@@ -50,6 +50,7 @@ class Helpers:
         f.close()
         cred_data_splitted = cred_data.split("\n")
 
+
         new_txt = ""
 
         for line in cred_data_splitted:
