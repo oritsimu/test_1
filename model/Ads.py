@@ -22,6 +22,11 @@ class Ads:
     __CUSTOMER_ID = "hidden" # Test MCC Account
 
     __googleads_client = None
+    
+    __keyword_plan_idea_service = None
+    __keyword_plan_network = None
+    __location_rns = None
+    __language_rn = None
 
     # default location ID for New York
     # default language ID for English
@@ -31,6 +36,11 @@ class Ads:
         self.__DEFAULT_LANGUAGE_ID = language_id
         network = Network()
         self.__CUSTOMER_ID = network.getTestMCCID()
+        
+        self.__keyword_plan_idea_service = self.__googleads_client.get_service("KeywordPlanIdeaService")
+        self.__keyword_plan_network = self.__googleads_client.get_type("KeywordPlanNetworkEnum").KeywordPlanNetwork.GOOGLE_SEARCH_AND_PARTNERS
+        self.__location_rns = self.__map_locations_ids_to_resource_names(self.__googleads_client, self.__DEFAULT_LOCATION_IDS)
+        self.__language_rn = self.__googleads_client.get_service("LanguageConstantService").language_constant_path(self.__DEFAULT_LANGUAGE_ID)
 
 
     def __map_locations_ids_to_resource_names(self, client, location_ids):
@@ -44,26 +54,16 @@ class Ads:
 
         try:
 
-            keyword_plan_idea_service = self.__googleads_client.get_service("KeywordPlanIdeaService")
-            keyword_plan_network = self.__googleads_client.get_type(
-                "KeywordPlanNetworkEnum"
-            ).KeywordPlanNetwork.GOOGLE_SEARCH_AND_PARTNERS
-            location_rns = self.__map_locations_ids_to_resource_names(self.__googleads_client, self.__DEFAULT_LOCATION_IDS)
-            language_rn = self.__googleads_client.get_service(
-                "LanguageConstantService"
-            ).language_constant_path(self.__DEFAULT_LANGUAGE_ID)
-
-
             request = self.__googleads_client.get_type("GenerateKeywordIdeasRequest")
             request.customer_id = self.__CUSTOMER_ID
-            request.language = language_rn
-            request.geo_target_constants = location_rns
+            request.language = self.__language_rn
+            request.geo_target_constants = self.__location_rns
             request.include_adult_keywords = False
-            request.keyword_plan_network = keyword_plan_network
+            request.keyword_plan_network = self.__keyword_plan_network
             request.keyword_seed.keywords.extend(keywords)
 
 
-            keyword_ideas = keyword_plan_idea_service.generate_keyword_ideas(
+            keyword_ideas = self.__keyword_plan_idea_service.generate_keyword_ideas(
                 request=request
             )
             
