@@ -66,6 +66,8 @@ class Ads:
             keyword_ideas = keyword_plan_idea_service.generate_keyword_ideas(
                 request=request
             )
+            
+            keyword_ideas = list(keyword_ideas)
 
             if len(keyword_ideas) > 0:
 
