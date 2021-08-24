@@ -77,6 +77,8 @@ if start_execution:
         ads = Ads(location_ids = location_ids, language_id = language_id)
 
         for keyword in keywords:
+            
+            sleep(1) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
 
             keyword = [keyword]
 
