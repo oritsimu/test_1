@@ -76,10 +76,19 @@ if start_execution:
         rows = []
         
         ads = Ads(location_ids = location_ids, language_id = language_id)
+        
+        saved_time = 0
+        
+        counter = 1
 
         for keyword in keywords:
             
-            time.sleep(1) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
+            current_time = time.time()
+            diff_time = current_time - saved_time
+            sleep_time = 1 - diff_time
+            if sleep_time > 0:
+                time.sleep(sleep_time) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
+            saved_time = time.time()
 
             keyword = [keyword]
 
@@ -101,6 +110,12 @@ if start_execution:
             #except:
                 #st.warning("Service is currently unavailable because of the high traffic :(")
                 #error_flag = True
+            
+            if counter < len(keywords):
+                st.warning("Getting keywords... {}/{}".format(str(counter), str(len(keywords))))
+            else:
+                st.success("Getting keywords... {}/{}".format(str(counter), str(len(keywords))))
+            counter += 1
 
 
         if not error_flag:
