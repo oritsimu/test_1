@@ -67,21 +67,22 @@ class Ads:
                 request=request
             )
 
+            if len(keyword_ideas) > 0:
 
-            list_keywords = []
-            for idea in keyword_ideas:
-                competition_value = idea.keyword_idea_metrics.competition.name
-                avg_monthly_searches = idea.keyword_idea_metrics.avg_monthly_searches
-                text = idea.text
-                list_keywords.append(idea)
-
-
-            main_kw = list_keywords[0]
-            del list_keywords[0]
-            list_keywords = sorted(list_keywords, key=lambda x: int(x.keyword_idea_metrics.avg_monthly_searches), reverse=True)
-            top_five = list_keywords[:5]
-            top_five_with_main_kw = [main_kw] + top_five
-            return top_five_with_main_kw
+                main_kw = keyword_ideas[0]
+                del keyword_ideas[0]
+                keyword_ideas = sorted(keyword_ideas, key=lambda x: int(x.keyword_idea_metrics.avg_monthly_searches), reverse=True)
+                if len(keyword_ideas) >= 5:
+                    top_five = keyword_ideas[:5]
+                    top_five_with_main_kw = [main_kw] + top_five
+                    return top_five_with_main_kw
+                else:
+                    top_five = keyword_ideas[:len(keyword_ideas)]
+                    top_five_with_main_kw = [main_kw] + top_five
+                    return top_five_with_main_kw
+            
+            else:
+                return []
 
 
 
