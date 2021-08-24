@@ -6,6 +6,7 @@ from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 import time
+from stqdm import stqdm
 from model.Ads import Ads
 from model.Excel import Excel
 from model.Helpers import Helpers
@@ -79,9 +80,10 @@ if start_execution:
         
         saved_time = 0
         
-        counter = 1
 
-        for keyword in keywords:
+        for i in stqdm(range(len(keywords))):
+            
+            keyword = keywords[i]
             
             current_time = time.time()
             diff_time = current_time - saved_time
@@ -111,11 +113,6 @@ if start_execution:
                 #st.warning("Service is currently unavailable because of the high traffic :(")
                 #error_flag = True
             
-            if counter < len(keywords):
-                st.warning("Getting keywords... {}/{}".format(str(counter), str(len(keywords))))
-            else:
-                st.success("Getting keywords... {}/{}".format(str(counter), str(len(keywords))))
-            counter += 1
 
 
         if not error_flag:
