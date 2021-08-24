@@ -73,30 +73,31 @@ if start_execution:
 
 
         rows = []
+        
+        ads = Ads(location_ids = location_ids, language_id = language_id)
 
         for keyword in keywords:
 
             keyword = [keyword]
 
-            ads = Ads(location_ids = location_ids, language_id = language_id)
 
-            try:
+            #try:
 
-                ideas = ads.run(keyword)
+            ideas = ads.run(keyword)
 
-                row = []
+            row = []
 
-                for i in range(len(ideas)):
-                    if include_volume:
-                        row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
-                    else:
-                        row += [ideas[i].text]
+            for i in range(len(ideas)):
+                if include_volume:
+                    row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                else:
+                    row += [ideas[i].text]
 
-                rows.append(row)
+            rows.append(row)
 
-            except:
-                st.warning("Service is currently unavailable because of the high traffic :(")
-                error_flag = True
+            #except:
+                #st.warning("Service is currently unavailable because of the high traffic :(")
+                #error_flag = True
 
 
         if not error_flag:
