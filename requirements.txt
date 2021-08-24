@@ -4,4 +4,5 @@ streamlit_bokeh_events
 google.ads
 pyrebase
 jwt
+stqdm
 streamlit==0.82.0
