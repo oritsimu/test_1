@@ -95,54 +95,54 @@ if start_execution:
             keyword = [keyword]
 
 
-            #try:
+            try:
 
-            ideas = ads.run(keyword)
+                ideas = ads.run(keyword)
 
-            row = []
+                row = []
 
-            for i in range(len(ideas)):
-                if include_volume:
-                    row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
-                else:
-                    row += [ideas[i].text]
+                for i in range(len(ideas)):
+                    if include_volume:
+                        row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                    else:
+                        row += [ideas[i].text]
 
-            rows.append(row)
+                rows.append(row)
 
-            #except:
-                #st.warning("Service is currently unavailable because of the high traffic :(")
+            except Exception as e:
+                st.warning("Error: {}".format(e))
                 #error_flag = True
             
 
 
-        if not error_flag:
+        #if not error_flag:
 
-            dataframe = pd.DataFrame(rows, columns = columns)
+        dataframe = pd.DataFrame(rows, columns = columns)
 
-            st.write(dataframe)
-
-
-            copy_button = Button(label="Copy to Clipboard")
-            copy_button.js_on_event("button_click", CustomJS(args=dict(df=dataframe.to_csv(sep='\t')), code="""
-            navigator.clipboard.writeText(df);
-            """))
-
-            no_event = streamlit_bokeh_events(
-                copy_button,
-                events="GET_TEXT",
-                key="get_text",
-                refresh_on_update=True,
-                override_height=40,
-                debounce_time=0)
+        st.write(dataframe)
 
 
-            towrite = io.BytesIO()
-            downloaded_file = dataframe.to_excel(towrite, encoding='utf-8', header=True, index=False)
-            towrite.seek(0)  # reset pointer
-            b64 = base64.b64encode(towrite.read()).decode()  # some strings
-            custom_css, button_id = DownloadButtonView.getCustomCSS()
-            linko = custom_css + f'<a id="{button_id}" href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="results.xlsx">Download KWs Excel</a>'
+        copy_button = Button(label="Copy to Clipboard")
+        copy_button.js_on_event("button_click", CustomJS(args=dict(df=dataframe.to_csv(sep='\t')), code="""
+        navigator.clipboard.writeText(df);
+        """))
+
+        no_event = streamlit_bokeh_events(
+            copy_button,
+            events="GET_TEXT",
+            key="get_text",
+            refresh_on_update=True,
+            override_height=40,
+            debounce_time=0)
 
 
-            st.markdown(linko, unsafe_allow_html=True)
-            st.write("#")
+        towrite = io.BytesIO()
+        downloaded_file = dataframe.to_excel(towrite, encoding='utf-8', header=True, index=False)
+        towrite.seek(0)  # reset pointer
+        b64 = base64.b64encode(towrite.read()).decode()  # some strings
+        custom_css, button_id = DownloadButtonView.getCustomCSS()
+        linko = custom_css + f'<a id="{button_id}" href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="results.xlsx">Download KWs Excel</a>'
+
+
+        st.markdown(linko, unsafe_allow_html=True)
+        st.write("#")
