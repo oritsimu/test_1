@@ -5,6 +5,7 @@ import pandas as pd
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
+import time
 from model.Ads import Ads
 from model.Excel import Excel
 from model.Helpers import Helpers
@@ -78,7 +79,7 @@ if start_execution:
 
         for keyword in keywords:
             
-            sleep(1) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
+            time.sleep(1) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
 
             keyword = [keyword]
 
