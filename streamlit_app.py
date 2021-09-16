@@ -32,6 +32,7 @@ text = st.text_area("Input your search term (one per line, max {}) and hit Get K
 lines = text.split("\n")  # A list of lines
 keywords = Helpers.removeRestrictedCharactersAndWhiteSpaces(lines)
 
+st.text('You have {} KWs out of the max {} KWs'.format(str(len(keywords)), str(__KEYWORD_LIMIT)))
 
 data_parser = DataParser() #TODO save lists as binary to speed up the process
 parent_locations = data_parser.get_parent_locations()
