@@ -147,3 +147,6 @@ if start_execution:
 
         st.markdown(linko, unsafe_allow_html=True)
         st.write("#")
+        
+        text = st.text_area("Excel Formatted Text: ", str(dataframe.to_csv(sep='\t')), height=150, key=1)
+
