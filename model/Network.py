@@ -46,23 +46,23 @@ class Network:
         return int(keyword_limit)
 
     def getLoginCustomerID(self):
-        login_customer_id = self.__db.child("login-customer-id-test").get(token=self.__user['idToken']).val()
+        login_customer_id = self.__db.child("login-customer-id").get(token=self.__user['idToken']).val()
         return str(login_customer_id)
 
     def getDeveloperToken(self):
-        developer_token = self.__db.child("developer_token_test").get(token=self.__user['idToken']).val()
+        developer_token = self.__db.child("developer_token").get(token=self.__user['idToken']).val()
         return str(developer_token)
 
     def getClientID(self):
-        client_id = self.__db.child("client_id_test").get(token=self.__user['idToken']).val()
+        client_id = self.__db.child("client_id").get(token=self.__user['idToken']).val()
         return str(client_id)
 
     def getClienSecret(self):
-        client_secret = self.__db.child("client_secret_test").get(token=self.__user['idToken']).val()
+        client_secret = self.__db.child("client_secret").get(token=self.__user['idToken']).val()
         return str(client_secret)
 
     def getTestMCCID(self):
-        test_mcc_id = self.__db.child("test_mcc_id_test").get(token=self.__user['idToken']).val()
+        test_mcc_id = self.__db.child("test_mcc_id").get(token=self.__user['idToken']).val()
         return str(test_mcc_id)
 
 
