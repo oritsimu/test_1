@@ -7,7 +7,7 @@ class Helpers:
         keywords = list(dict.fromkeys(keywords))  # Remove dupes
         keywords = list(filter(None, keywords))  # Remove empty
 
-        restricted_characters = ['-', ',', '\'', ')', '(', '[', ']', '{', '}', '.', '*', '?', '_', '@', '!', '$']
+        restricted_characters = ['-', ',', '\'', ')', '(', '[', ']', '{', '}', '.', '*', '?', '_', '@', '!', '$', '&', '#', '~', '%']
 
         preprocessed_list = []
 
