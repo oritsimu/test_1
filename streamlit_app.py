@@ -29,6 +29,7 @@ st.title("The Meta Description Briefing Tool:snake::fire:")
 text = st.text_area("Input your search term (one per line, max {}) and hit Get Keywords to get the most relevant keywords to use on your meta description with their respective search volume. You’ll get a sample of your top 5 keywords, and you can hit Download Results for the complete dataset ⬇️".format(str(__KEYWORD_LIMIT)), height=150, key=1)
 
 
+
 lines = text.split("\n")  # A list of lines
 keywords = Helpers.removeRestrictedCharactersAndWhiteSpaces(lines)
 
