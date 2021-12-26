@@ -28,34 +28,34 @@ __KEYWORD_LIMIT = network.getKeywordLimit()
 st.set_page_config(layout="wide")
 
 
-refresh = st.button("Refresh Token")
+#refresh = st.button("Refresh Token")
 
-if refresh:
+#if refresh:
     
-    scopes = ["https://www.googleapis.com/auth/adwords"]
-    
-    secrets = {"installed":{"client_id":st.secrets["client_id"],"project_id":st.secrets["project_id"],"auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":st.secrets["client_secret"],"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
-    
-    flow = Flow.from_client_config(
-        secrets, scopes=scopes, redirect_uri='urn:ietf:wg:oauth:2.0:oob'
-    )
-    
-    auth_url, _ = flow.authorization_url(prompt='consent')
-    
-    st.text('Please go to this URL:\n{}'.format(auth_url))
-    
-    authorization_code = st.text_input('Enter the authorization code: ')
-    
-    st.text(authorization_code)
-    
-    
-    enter_auth_code = st.button("Enter")
-    
-    if enter_auth_code:
-    
-        token = flow.fetch_token(code=authorization_code)
-    
-        st.text(token)
+scopes = ["https://www.googleapis.com/auth/adwords"]
+
+secrets = {"installed":{"client_id":st.secrets["client_id"],"project_id":st.secrets["project_id"],"auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":st.secrets["client_secret"],"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
+
+flow = Flow.from_client_config(
+    secrets, scopes=scopes, redirect_uri='urn:ietf:wg:oauth:2.0:oob'
+)
+
+auth_url, _ = flow.authorization_url(prompt='consent')
+
+st.text('Please go to this URL:\n{}'.format(auth_url))
+
+authorization_code = st.text_input('Enter the authorization code: ')
+
+st.text(authorization_code)
+
+
+enter_auth_code = st.button("Enter")
+
+if enter_auth_code:
+
+    token = flow.fetch_token(code=authorization_code)
+
+    st.text(token)
     
     #flow.run_console()
     
