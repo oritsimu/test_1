@@ -13,7 +13,7 @@ from model.Helpers import Helpers
 from view.DownloadButtonView import DownloadButtonView
 from model.DataParser import DataParser
 from model.Network import Network
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google_auth_oauthlib.flow import Flow
 
 
 network = Network()
@@ -36,7 +36,7 @@ if refresh:
     
     secrets = {"installed":{"client_id":st.secrets["client_id"],"project_id":st.secrets["project_id"],"auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":st.secrets["client_secret"],"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
     
-    flow = InstalledAppFlow.from_client_config(
+    flow = Flow.from_client_config(
         secrets, scopes=scopes, redirect_uri='urn:ietf:wg:oauth:2.0:oob'
     )
     
