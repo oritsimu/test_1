@@ -40,6 +40,10 @@ if refresh:
         secrets, scopes=scopes
     )
     
+    authorization_url = flow.authorization_url()
+    
+    st.text(authorization_url)
+    
     token = flow.fetch_token()
     st.text(token)
     
