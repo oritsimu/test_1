@@ -13,6 +13,7 @@ from model.Helpers import Helpers
 from view.DownloadButtonView import DownloadButtonView
 from model.DataParser import DataParser
 from model.Network import Network
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 network = Network()
@@ -25,6 +26,38 @@ Helpers.updateCredentials(refresh_token, client_secret, client_id, developer_tok
 __KEYWORD_LIMIT = network.getKeywordLimit()
 
 st.set_page_config(layout="wide")
+
+
+refresh = st.button("Refresh Token")
+
+if refresh:
+    
+    scopes = ["https://www.googleapis.com/auth/adwords"]
+    
+    secrets = {"installed":{"client_id":st.secrets["client_id"],"project_id":st.secrets["project_id"],"auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":st.secrets["client_secret"],"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
+    
+    flow = InstalledAppFlow.from_client_config(
+        secrets, scopes=scopes
+    )
+    
+    token = flow.fetch_token()
+    st.text(token)
+    
+    #flow.run_console()
+    
+    #print("Refreshing token ...")
+
+    #print("Access token: %s" % flow.credentials.token)
+    #print("Refresh token: %s" % flow.credentials.refresh_token)
+
+    #refresh_token = flow.credentials.refresh_token
+
+    #network = Network()
+    #network.setRefreshTokenForGoogleAdsAPI(refresh_token)
+
+    #print("Token has been refreshed!")
+
+
 st.title("The Meta Description Briefing Tool:snake::fire:")
 text = st.text_area("Input your search term (one per line, max {}) and hit Get Keywords to get the most relevant keywords to use on your meta description with their respective search volume. You’ll get a sample of your top 5 keywords, and you can hit Download Results for the complete dataset ⬇️".format(str(__KEYWORD_LIMIT)), height=150, key=1)
 
