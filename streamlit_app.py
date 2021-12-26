@@ -44,7 +44,7 @@ if refresh:
     
     st.text('Please go to this URL:\n{}'.format(auth_url))
     
-    authorization_code = st.text_area('Enter the authorization code: ')
+    authorization_code = st.text_input('Enter the authorization code: ')
     
     
     enter_auth_code = st.button("Enter")
