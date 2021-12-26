@@ -44,6 +44,8 @@ if refresh:
     
     st.text(authorization_url)
     
+    st.text(flow.redirect_uri)
+    
     token = flow.fetch_token()
     st.text(token)
     
