@@ -46,6 +46,8 @@ if refresh:
     
     authorization_code = st.text_input('Enter the authorization code: ')
     
+    st.text(authorization_code)
+    
     
     enter_auth_code = st.button("Enter")
     
