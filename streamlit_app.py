@@ -42,20 +42,22 @@ flow = Flow.from_client_config(
 
 auth_url, _ = flow.authorization_url(prompt='consent')
 
-st.text('Please go to this URL:\n{}'.format(auth_url))
+st.text('Please go to this URL if the token is expired:\n{}'.format(auth_url))
 
 authorization_code = st.text_input('Enter the authorization code: ')
 
 st.text(authorization_code)
 
 
-enter_auth_code = st.button("Enter")
+enter_auth_code = st.button("Refresh Token")
 
 if enter_auth_code:
 
     token = flow.fetch_token(code=authorization_code)
+    
+    print(token)
 
-    st.text(token)
+    st.text(str(token))
     
     #flow.run_console()
     
