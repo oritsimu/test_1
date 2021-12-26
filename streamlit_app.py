@@ -51,7 +51,7 @@ if refresh:
     
     if enter_auth_code:
     
-        token = flow.fetch_token(code=code)
+        token = flow.fetch_token(code=authorization_code)
     
         st.text(token)
     
