@@ -37,17 +37,23 @@ if refresh:
     secrets = {"installed":{"client_id":st.secrets["client_id"],"project_id":st.secrets["project_id"],"auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":st.secrets["client_secret"],"redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
     
     flow = InstalledAppFlow.from_client_config(
-        secrets, scopes=scopes
+        secrets, scopes=scopes, redirect_uri='urn:ietf:wg:oauth:2.0:oob'
     )
     
-    authorization_url = flow.authorization_url()
+    auth_url, _ = flow.authorization_url(prompt='consent')
     
-    st.text(authorization_url)
+    st.text('Please go to this URL:\n{}'.format(auth_url))
     
-    st.text(flow.redirect_uri)
+    authorization_code = st.text_area('Enter the authorization code: ')
     
-    token = flow.fetch_token()
-    st.text(token)
+    
+    enter_auth_code = st.button("Enter")
+    
+    if enter_auth_code:
+    
+        token = flow.fetch_token(code=code)
+    
+        st.text(token)
     
     #flow.run_console()
     
