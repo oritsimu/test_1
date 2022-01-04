@@ -46,22 +46,13 @@ enter_auth_code = st.button("Refresh Token")
 
 if enter_auth_code:
 
-    token = flow.fetch_token(code=authorization_code)
+    #token = flow.fetch_token(code=authorization_code)
     
-    print(token)
-    
-    refresh_token = token["refresh_token"]
+    #refresh_token = token["refresh_token"]
+    refresh_token = "asdqwe"
 
     st.text("Refresh token: {}".format(str(refresh_token)))
-    
-    #flow.run_console()
-    
-    #print("Refreshing token ...")
-
-    #print("Access token: %s" % flow.credentials.token)
-    #print("Refresh token: %s" % flow.credentials.refresh_token)
-
-    #refresh_token = flow.credentials.refresh_token
+    st.text("Refreshing token ...")
     
     network.setRefreshTokenForGoogleAdsAPI(refresh_token)
 
