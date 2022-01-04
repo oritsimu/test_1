@@ -40,6 +40,9 @@ class Network:
     def getRefreshTokenForGoogleAdsAPI(self):
         refresh_token_response = self.__db.child("refresh_token").get(token=self.__user['idToken']).val()
         return str(refresh_token_response)
+    
+    def setRefreshTokenForGoogleAdsAPI(self, refresh_token):
+        self.__db.update({"refresh_token": refresh_token}, token=self.__user['idToken'])
 
     def getKeywordLimit(self):
         keyword_limit = self.__db.child("keyword_limit").get(token=self.__user['idToken']).val()
