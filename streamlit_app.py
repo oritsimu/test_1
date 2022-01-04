@@ -17,13 +17,6 @@ from google_auth_oauthlib.flow import Flow
 
 
 network = Network()
-refresh_token = network.getRefreshTokenForGoogleAdsAPI()
-client_secret = network.getClienSecret()
-client_id = network.getClientID()
-developer_token = network.getDeveloperToken()
-login_customer_id = network.getLoginCustomerID()
-Helpers.updateCredentials(refresh_token, client_secret, client_id, developer_token, login_customer_id)
-__KEYWORD_LIMIT = network.getKeywordLimit()
 
 st.set_page_config(layout="wide")
 
@@ -56,8 +49,10 @@ if enter_auth_code:
     token = flow.fetch_token(code=authorization_code)
     
     print(token)
+    
+    refresh_token = token["refresh_token"]
 
-    st.text(str(token))
+    st.text("Refresh token: {}".format(str(refresh_token)))
     
     #flow.run_console()
     
@@ -67,12 +62,21 @@ if enter_auth_code:
     #print("Refresh token: %s" % flow.credentials.refresh_token)
 
     #refresh_token = flow.credentials.refresh_token
+    
+    network.setRefreshTokenForGoogleAdsAPI(refresh_token)
 
-    #network = Network()
-    #network.setRefreshTokenForGoogleAdsAPI(refresh_token)
+    st.text("Token has been refreshed!")
 
-    #print("Token has been refreshed!")
-
+    
+    
+refresh_token = network.getRefreshTokenForGoogleAdsAPI()
+client_secret = network.getClienSecret()
+client_id = network.getClientID()
+developer_token = network.getDeveloperToken()
+login_customer_id = network.getLoginCustomerID()
+Helpers.updateCredentials(refresh_token, client_secret, client_id, developer_token, login_customer_id)
+__KEYWORD_LIMIT = network.getKeywordLimit()
+    
 
 st.title("The Meta Description Briefing Tool:snake::fire:")
 text = st.text_area("Input your search term (one per line, max {}) and hit Get Keywords to get the most relevant keywords to use on your meta description with their respective search volume. You’ll get a sample of your top 5 keywords, and you can hit Download Results for the complete dataset ⬇️".format(str(__KEYWORD_LIMIT)), height=150, key=1)
