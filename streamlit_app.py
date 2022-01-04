@@ -46,10 +46,9 @@ enter_auth_code = st.button("Refresh Token")
 
 if enter_auth_code:
 
-    #token = flow.fetch_token(code=authorization_code)
+    token = flow.fetch_token(code=authorization_code)
     
-    #refresh_token = token["refresh_token"]
-    refresh_token = "asdqwe"
+    refresh_token = token["refresh_token"]
 
     st.text("Refresh token: {}".format(str(refresh_token)))
     st.text("Refreshing token ...")
