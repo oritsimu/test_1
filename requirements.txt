@@ -2,7 +2,7 @@ xlsxwriter
 bokeh
 streamlit_bokeh_events
 google.ads==12.0.0
-pyrebase==3.0.27
+pyrebase
 jwt
 stqdm
 streamlit==0.82.0
