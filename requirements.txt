@@ -6,3 +6,4 @@ pyrebase
 jwt
 stqdm
 streamlit==0.82.0
+oauth2client
