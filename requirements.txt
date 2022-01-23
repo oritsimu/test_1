@@ -6,3 +6,8 @@ pyrebase
 jwt
 stqdm
 streamlit==0.82.0
+requests_toolbelt
+gcloud
+oauth2client
+sseclient
+pycrypto==2.0
