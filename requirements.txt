@@ -6,5 +6,3 @@ pyrebase
 jwt
 stqdm
 streamlit==0.82.0
-pycrypto
-pycryptodomex
