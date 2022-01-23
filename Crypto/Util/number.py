@@ -154,7 +154,7 @@ def inverse(u, v):
     Return the inverse of u mod v.
     """
     u3, v3 = long(u), long(v)
-    u1, v1 = 1L, 0L
+    u1, v1 = 1, 0
     while v3 > 0:
         q=divmod(u3, v3)[0]
         u1, v1 = v1, u1 - v1*q
@@ -275,9 +275,9 @@ def getStrongPrime(N, e=0, false_positive_prob=1e-6, randfunc=None):
     x = (N - 512) >> 7;
     # We need to approximate the sqrt(2) in the lower_bound by an integer
     # expression because floating point math overflows with these numbers
-    lower_bound = divmod(14142135623730950489L * (2L ** (511 + 128*x)),
-                         10000000000000000000L)[0]
-    upper_bound = (1L << (512 + 128*x)) - 1
+    lower_bound = divmod(14142135623730950489 * (2 ** (511 + 128*x)),
+                         10000000000000000000)[0]
+    upper_bound = (1 << (512 + 128*x)) - 1
     # Randomly choose X in calculated range
     X = getRandomRange (lower_bound, upper_bound, randfunc)
 
@@ -347,7 +347,7 @@ def getStrongPrime(N, e=0, false_positive_prob=1e-6, randfunc=None):
         X += increment
 		# abort when X has more bits than requested
 		# TODO: maybe we shouldn't abort but rather start over.
-        if X >= 1L << N:
+        if X >= 1 << N:
             raise RuntimeError ("Couln't find prime in field. "
                                 "Developer: Increase field_size")
     return X
@@ -397,7 +397,7 @@ def long_to_bytes(n, blocksize=0):
     n = long(n)
     pack = struct.pack
     while n > 0:
-        s = pack('>I', n & 0xffffffffL) + s
+        s = pack('>I', n & 0xffffffff) + s
         n = n >> 32
     # strip off leading zeros
     for i in range(len(s)):
@@ -420,7 +420,7 @@ def bytes_to_long(s):
 
     This is (essentially) the inverse of long_to_bytes().
     """
-    acc = 0L
+    acc = 0
     unpack = struct.unpack
     length = len(s)
     if length % 4:
