@@ -9,3 +9,4 @@ sseclient
 oauth2client
 gcloud
 requests_toolbelt
+pycryptodomex
