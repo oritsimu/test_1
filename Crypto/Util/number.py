@@ -57,7 +57,7 @@ if _fastmath is not None and not _fastmath.HAVE_DECL_MPZ_POWM_SEC:
     _warn("Not using mpz_powm_sec.  You should rebuild using libgmp >= 5 to avoid timing attack vulnerability.", PowmInsecureWarning)
 
 # New functions
-from _number_new import *
+from number_new import *
 
 # Commented out and replaced with faster versions below
 ## def long2str(n):
