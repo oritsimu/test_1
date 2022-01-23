@@ -29,7 +29,7 @@ import errno
 import os
 import stat
 
-from rng_base import BaseRNG
+from Crypto.Random.OSRNG.rng_base import BaseRNG
 from Crypto.Util.py3compat import b
 
 class DevURandomRNG(BaseRNG):
