@@ -8,3 +8,4 @@ streamlit==0.82.0
 sseclient
 oauth2client
 gcloud
+requests_toolbelt
