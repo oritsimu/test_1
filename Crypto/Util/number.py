@@ -136,7 +136,7 @@ def getRandomNBitInteger(N, randfunc=None):
     the future.
     """
     value = getRandomInteger (N-1, randfunc)
-    value |= 2L ** (N-1)                # Ensure high bit is set
+    value |= 2 ** (N-1)                # Ensure high bit is set
     assert size(value) >= N
     return value
 
