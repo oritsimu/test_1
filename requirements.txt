@@ -10,4 +10,3 @@ requests_toolbelt
 gcloud
 oauth2client
 sseclient
-pycrypto==2.6
