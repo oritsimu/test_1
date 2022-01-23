@@ -34,7 +34,7 @@ import time
 import warnings
 
 from Crypto.pct_warnings import ClockRewindWarning
-import SHAd256
+import Crypto.Random.Fortuna.SHAd256
 
 import FortunaGenerator
 
