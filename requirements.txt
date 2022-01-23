@@ -7,3 +7,4 @@ jwt
 stqdm
 streamlit==1.0.0
 oauth2client
+pycrypto
