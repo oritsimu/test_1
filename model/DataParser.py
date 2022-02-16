@@ -44,7 +44,7 @@ class DataParser:
             location_code = splitted[-3]
             location_type = splitted[-2]
             
-            if location_type = "Country":
+            if location_type == "Country":
                 self.__main_locations_by_country_code[location_code] = location_id
 
             try: #Main Location
