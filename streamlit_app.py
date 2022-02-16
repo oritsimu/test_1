@@ -114,9 +114,9 @@ if start_execution:
         error_flag = False #If there is an unexpected error with the API, the rest of the code won't be processed and a warning message will appear.
 
         if include_volume:
-            columns = ["Main KW", "Search Volume main", "Keyword 1", "Search Volume 1", "Keyword 2", "Search Volume 2", "Keyword 3", "Search Volume 3", "Keyword 4", "Search Volume 4", "Keyword 5", "Search Volume 5"]
+            columns = ["Location", "Main KW", "Search Volume main", "Keyword 1", "Search Volume 1", "Keyword 2", "Search Volume 2", "Keyword 3", "Search Volume 3", "Keyword 4", "Search Volume 4", "Keyword 5", "Search Volume 5"]
         else:
-            columns = ["Main KW", "Keyword 1", "Keyword 2", "Keyword 3", "Keyword 4", "Keyword 5"]
+            columns = ["Location", "Main KW", "Keyword 1", "Keyword 2", "Keyword 3", "Keyword 4", "Keyword 5"]
 
 
         rows = []
@@ -171,12 +171,20 @@ if start_execution:
                 ideas = ads.run(keyword)
 
                 row = []
+                
+                main_kw_flag = True
 
-                for i in range(len(ideas)):
-                    if include_volume:
-                        row += [ideas[i].text + " " + geo_identifier_text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                for i in range(len(ideas) + 1):
+                    if main_kw_flag:
+                        row += [geo_identifier_text]
+                        main_kw_flag  = False
                     else:
-                        row += [ideas[i].text + " " + geo_identifier_text]
+                        if include_volume:
+                            row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                        else:
+                            row += [ideas[i].text]
+                        
+                    
 
                 rows.append(row)
 
