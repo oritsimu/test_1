@@ -7,32 +7,32 @@ class Helpers:
         restricted_characters = ['-', ',', '\'', ')', '(', '[', ']', '{', '}', '.', '*', '?', '_', '@', '!', '$', '&', '#', '~', '%']
         
         clean_keyword = ""
-            for char in keyword:
-                if char not in restricted_characters:
-                    clean_keyword += char
+        for char in keyword:
+            if char not in restricted_characters:
+                clean_keyword += char
 
-            white_space_counter = 0
+        white_space_counter = 0
 
-            for char in clean_keyword:
-                if char == ' ':
-                    white_space_counter += 1
-                else:
-                    break
+        for char in clean_keyword:
+            if char == ' ':
+                white_space_counter += 1
+            else:
+                break
 
-            clean_keyword = clean_keyword[white_space_counter:]
+        clean_keyword = clean_keyword[white_space_counter:]
 
-            white_space_counter = 0
+        white_space_counter = 0
 
-            for i in range(len(clean_keyword) - 1, 0, -1):
-                if clean_keyword[i] == ' ':
-                    white_space_counter += 1
-                else:
-                    break
+        for i in range(len(clean_keyword) - 1, 0, -1):
+            if clean_keyword[i] == ' ':
+                white_space_counter += 1
+            else:
+                break
 
-            if white_space_counter != 0:
-                clean_keyword = clean_keyword[:-white_space_counter]
+        if white_space_counter != 0:
+            clean_keyword = clean_keyword[:-white_space_counter]
 
-            return clean_keyword
+        return clean_keyword
 
         
     @staticmethod
