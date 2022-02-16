@@ -146,9 +146,15 @@ if start_execution:
                 keyword = [splitted[0]]
                 geo_identifier_text = splitted[1]
                 
+                if geo_identifier_text == "UK":
+                    geo_identifier_text = "GB"
+                
                 loc_id = data_parser.get_location_id_by_code(geo_identifier_text)
                 
-                st.text(loc_id)
+                if loc_id is None:
+                    st.warning(geo_identifier_text + " does not exist.")
+                    continue
+                
                         
                 ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
@@ -156,7 +162,6 @@ if start_execution:
                 
                 for e in location_ids:
                     geo_identifier += e + "-"
-                st.text(str(location_ids))
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
