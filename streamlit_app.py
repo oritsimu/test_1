@@ -78,7 +78,7 @@ keywords = Helpers.removeRestrictedCharactersAndWhiteSpaces(lines)
 
 st.text('You have {} KWs out of the max {} KWs'.format(str(len(keywords)), str(__KEYWORD_LIMIT)))
 
-data_parser = DataParser() #TODO save lists as binary to speed up the process
+data_parser = DataParser()
 parent_locations = data_parser.get_parent_locations()
 languages = data_parser.get_languages()
 
@@ -121,7 +121,7 @@ if start_execution:
 
         rows = []
         
-        ads = Ads(location_ids = location_ids, language_id = language_id)
+        
         
         saved_time = 0
         
@@ -129,6 +129,7 @@ if start_execution:
         for i in stqdm(range(len(keywords))):
             
             keyword = keywords[i]
+            locations_list_by_keyword = keywords_dict[keyword]
             
             current_time = time.time()
             diff_time = current_time - saved_time
@@ -136,8 +137,26 @@ if start_execution:
             if sleep_time > 0:
                 time.sleep(sleep_time) #API Limitations https://developers.google.com/google-ads/api/docs/best-practices/quotas
             saved_time = time.time()
+            
+            geo_identifier = ""
 
-            keyword = [keyword]
+            if "-" in keyword:
+                splitted = keyword.split("-")
+                if splitted[0][-1] == " ":
+                    keyword = [splitted[0][:-1]]
+                geo = [splitted[1]]
+                geos = Helpers.removeRestrictedCharactersAndWhiteSpaces(geo)
+                
+                geo_identifier = geos[0]
+                        
+                ads = Ads(location_ids = geos, language_id = language_id)
+                
+            else:
+                
+                for e in location_ids:
+                    geo_identifier += e + "-"
+            
+                ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
             try:
@@ -148,9 +167,9 @@ if start_execution:
 
                 for i in range(len(ideas)):
                     if include_volume:
-                        row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                        row += [ideas[i].text + ": " + geo_identifier, ideas[i].keyword_idea_metrics.avg_monthly_searches]
                     else:
-                        row += [ideas[i].text]
+                        row += [ideas[i].text + ": " + geo_identifier]
 
                 rows.append(row)
 
