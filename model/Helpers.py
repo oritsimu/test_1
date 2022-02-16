@@ -48,7 +48,7 @@ class Helpers:
             if "-" in keyword_geo:
                 keyword = keyword_geo.split("-")[0]
                 geos = keyword_geo.split("-")[1].split(" ")
-                geos = [e for e in geos if e != " " or e != ""]
+                geos = [e for e in geos if e != " " and e != ""]
             
                 keyword = Helpers.clean(keyword)
             
