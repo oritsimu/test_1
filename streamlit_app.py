@@ -129,7 +129,6 @@ if start_execution:
         for i in stqdm(range(len(keywords))):
             
             keyword = keywords[i]
-            locations_list_by_keyword = keywords_dict[keyword]
             
             current_time = time.time()
             diff_time = current_time - saved_time
@@ -142,10 +141,8 @@ if start_execution:
 
             if "-" in keyword:
                 splitted = keyword.split("-")
-                if splitted[0][-1] == " ":
-                    keyword = [splitted[0][:-1]]
-                geo = [splitted[1]]
-                geos = Helpers.removeRestrictedCharactersAndWhiteSpaces(geo)
+                keyword = [splitted[0]]
+                geos = [splitted[1]]
                 
                 geo_identifier = geos[0]
                         
@@ -167,9 +164,9 @@ if start_execution:
 
                 for i in range(len(ideas)):
                     if include_volume:
-                        row += [ideas[i].text + ": " + geo_identifier, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                        row += [ideas[i].text + " " + geo_identifier, ideas[i].keyword_idea_metrics.avg_monthly_searches]
                     else:
-                        row += [ideas[i].text + ": " + geo_identifier]
+                        row += [ideas[i].text + " " + geo_identifier]
 
                 rows.append(row)
 
