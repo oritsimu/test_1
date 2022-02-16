@@ -147,6 +147,8 @@ if start_execution:
                 geo_identifier_text = splitted[1]
                 
                 loc_id = data_parser.get_location_id_by_code(geo_identifier_text)
+                
+                st.text(loc_id)
                         
                 ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
