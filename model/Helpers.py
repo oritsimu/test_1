@@ -1,19 +1,12 @@
 
 class Helpers:
-
+    
     @staticmethod
-    def removeRestrictedCharactersAndWhiteSpaces(keywords):
-
-        keywords = list(dict.fromkeys(keywords))  # Remove dupes
-        keywords = list(filter(None, keywords))  # Remove empty
-
+    def clean(keyword):
+        
         restricted_characters = ['-', ',', '\'', ')', '(', '[', ']', '{', '}', '.', '*', '?', '_', '@', '!', '$', '&', '#', '~', '%']
-
-        preprocessed_list = []
-
-        for keyword in keywords:
-
-            clean_keyword = ""
+        
+        clean_keyword = ""
             for char in keyword:
                 if char not in restricted_characters:
                     clean_keyword += char
@@ -39,9 +32,32 @@ class Helpers:
             if white_space_counter != 0:
                 clean_keyword = clean_keyword[:-white_space_counter]
 
-            preprocessed_list.append(clean_keyword)
+            return clean_keyword
 
+        
+    @staticmethod
+    def removeRestrictedCharactersAndWhiteSpaces(keywords):
+
+        keywords = list(dict.fromkeys(keywords))  # Remove dupes
+        keywords = list(filter(None, keywords))  # Remove empty
+
+        preprocessed_list = []
+
+        for keyword_geo in keywords:
+            
+            if "-" in keyword_geo:
+                keyword = keyword_geo.split("-")[0]
+                geos = keyword = keyword_geo.split("-")[1].split(" ")
+                geos = [e for e in geos if e != " " or e != ""]
+            
+            keyword = Helpers.clean(keyword)
+            
+            for geo in geos:
+                geo = Helpers.clean(geo)
+                preprocessed_list.append(keyword + " - " + geo)
+            
         return preprocessed_list
+            
 
     @staticmethod
     def updateCredentials(refresh_token, client_secret, client_id, developer_token, login_customer_id):
