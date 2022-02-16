@@ -154,7 +154,7 @@ if start_execution:
                 
                 for e in location_ids:
                     geo_identifier += e + "-"
-            
+                st.text(str(location_ids))
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
