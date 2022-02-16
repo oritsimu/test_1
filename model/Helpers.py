@@ -50,11 +50,14 @@ class Helpers:
                 geos = keyword = keyword_geo.split("-")[1].split(" ")
                 geos = [e for e in geos if e != " " or e != ""]
             
-            keyword = Helpers.clean(keyword)
+                keyword = Helpers.clean(keyword)
             
-            for geo in geos:
-                geo = Helpers.clean(geo)
-                preprocessed_list.append(keyword + " - " + geo)
+                for geo in geos:
+                    geo = Helpers.clean(geo)
+                    preprocessed_list.append(keyword + " - " + geo)
+            else:
+                keyword = Helpers.clean(keyword_geo)
+                preprocessed_list.append(keyword)
             
         return preprocessed_list
             
