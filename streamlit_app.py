@@ -144,11 +144,11 @@ if start_execution:
             if "-" in keyword:
                 splitted = keyword.split("-")
                 keyword = [splitted[0]]
-                geos = [splitted[1]]
+                geo_identifier_text = splitted[1]
                 
-                geo_identifier = geos[0]
+                loc_id = data_parser.get_location_id_by_code(geo_identifier_text)
                         
-                ads = Ads(location_ids = geos, language_id = language_id)
+                ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
             else:
                 
