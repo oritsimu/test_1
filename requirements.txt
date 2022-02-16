@@ -4,7 +4,7 @@ streamlit_bokeh_events
 google.ads==12.0.0
 jwt
 stqdm
-streamlit==0.82.0
+streamlit==1.4.0
 requests_toolbelt
 gcloud
 oauth2client
