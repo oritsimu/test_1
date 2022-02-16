@@ -162,6 +162,7 @@ if start_execution:
                 
                 for e in location_ids:
                     geo_identifier += e + "-"
+                geo_identifier_text = geo_identifier[:-1]
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
@@ -173,9 +174,9 @@ if start_execution:
 
                 for i in range(len(ideas)):
                     if include_volume:
-                        row += [ideas[i].text + " " + geo_identifier, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                        row += [ideas[i].text + " " + geo_identifier_text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
                     else:
-                        row += [ideas[i].text + " " + geo_identifier]
+                        row += [ideas[i].text + " " + geo_identifier_text]
 
                 rows.append(row)
 
