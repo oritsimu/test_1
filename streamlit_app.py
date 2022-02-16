@@ -130,6 +130,8 @@ if start_execution:
             
             keyword = keywords[i]
             
+            st.text(keyword)
+            
             current_time = time.time()
             diff_time = current_time - saved_time
             sleep_time = 1 - diff_time
