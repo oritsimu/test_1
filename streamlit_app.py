@@ -175,14 +175,15 @@ if start_execution:
                 main_kw_flag = True
 
                 for i in range(len(ideas) + 1):
+                    idx = i-1
                     if main_kw_flag:
                         row += [geo_identifier_text]
                         main_kw_flag  = False
                     else:
                         if include_volume:
-                            row += [ideas[i].text, ideas[i].keyword_idea_metrics.avg_monthly_searches]
+                            row += [ideas[idx].text, ideas[idx].keyword_idea_metrics.avg_monthly_searches]
                         else:
-                            row += [ideas[i].text]
+                            row += [ideas[idx].text]
                         
                     
 
