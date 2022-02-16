@@ -54,7 +54,7 @@ class Helpers:
             
                 for geo in geos:
                     geo = Helpers.clean(geo)
-                    preprocessed_list.append(keyword + " - " + geo)
+                    preprocessed_list.append(keyword + "-" + geo)
             else:
                 keyword = Helpers.clean(keyword_geo)
                 preprocessed_list.append(keyword)
