@@ -161,7 +161,8 @@ if start_execution:
                 keyword = [keyword]
                 
                 for e in location_ids:
-                    geo_identifier += e + "-"
+                    loc_code = data_parser.get_code_by_location_id(e)
+                    geo_identifier += loc_code + "-"
                 geo_identifier_text = geo_identifier[:-1]
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
