@@ -168,7 +168,6 @@ if start_execution:
 
             try:
                 
-                st.text("Keyword: " + keyword)
 
                 ideas = ads.run(keyword)
 
