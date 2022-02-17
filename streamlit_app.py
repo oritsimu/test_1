@@ -163,6 +163,9 @@ if start_execution:
                 for e in location_ids:
                     geo_identifier += e + "-"
                 geo_identifier_text = geo_identifier[:-1]
+                print(geo_identifier_text)
+                print(location_ids)
+                print(language_id)
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
@@ -177,6 +180,8 @@ if start_execution:
                 for i in range(len(ideas) + 1):
                     idx = i-1
                     if main_kw_flag:
+                        if geo_identifier_text == "GB":
+                            geo_identifier_text = "UK"
                         row += [geo_identifier_text]
                         main_kw_flag  = False
                     else:
