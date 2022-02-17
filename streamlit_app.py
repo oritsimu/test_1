@@ -155,6 +155,9 @@ if start_execution:
                     st.warning(geo_identifier_text + " does not exist.")
                     continue
                 
+                st.text(geo_identifier_text)
+                st.text([loc_id])
+                st.text(language_id)
                         
                 ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
@@ -170,6 +173,8 @@ if start_execution:
 
 
             try:
+                
+                st.text("Keyword: " + keyword)
 
                 ideas = ads.run(keyword)
 
