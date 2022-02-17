@@ -163,6 +163,8 @@ if start_execution:
                 
             else:
                 
+                keyword = [keyword]
+                
                 for e in location_ids:
                     geo_identifier += e + "-"
                 geo_identifier_text = geo_identifier[:-1]
