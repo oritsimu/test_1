@@ -163,9 +163,9 @@ if start_execution:
                 for e in location_ids:
                     geo_identifier += e + "-"
                 geo_identifier_text = geo_identifier[:-1]
-                print(geo_identifier_text)
-                print(location_ids)
-                print(language_id)
+                st.text(geo_identifier_text)
+                st.text(location_ids)
+                st.text(language_id)
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
