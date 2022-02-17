@@ -130,7 +130,6 @@ if start_execution:
             
             keyword = keywords[i]
             
-            st.text(keyword)
             
             current_time = time.time()
             diff_time = current_time - saved_time
@@ -153,11 +152,7 @@ if start_execution:
                 
                 if loc_id is None:
                     st.warning(geo_identifier_text + " does not exist.")
-                    continue
-                
-                st.text(geo_identifier_text)
-                st.text([loc_id])
-                st.text(language_id)
+                    continue)
                         
                 ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
@@ -168,9 +163,6 @@ if start_execution:
                 for e in location_ids:
                     geo_identifier += e + "-"
                 geo_identifier_text = geo_identifier[:-1]
-                st.text(geo_identifier_text)
-                st.text(location_ids)
-                st.text(language_id)
                 ads = Ads(location_ids = location_ids, language_id = language_id)
 
 
