@@ -152,7 +152,7 @@ if start_execution:
                 
                 if loc_id is None:
                     st.warning(geo_identifier_text + " does not exist.")
-                    continue)
+                    continue
                         
                 ads = Ads(location_ids = [loc_id], language_id = language_id)
                 
